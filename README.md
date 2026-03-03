@@ -25,6 +25,8 @@ Projection Head,Input,"shape=(2048,)","[B, 2048]"
 ,Dense (Output),Units: 128,"[B, 128]"
 
 
+
+
 ## Dataset
 tiny-imagenet-200 is used as the dataset in this reproduction. The images are augmented with the techniques in the original paper (cropping and colour distortion). The purpose of this reproduction is to check if our model successfully extracted useful features from images, not predicting other images. So, we don't fine-tune it further for other prediction tasks.
 
