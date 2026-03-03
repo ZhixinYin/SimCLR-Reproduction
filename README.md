@@ -4,25 +4,28 @@
 This project reproduces the SimCLR as described in the original paper.
 
 ## Architecture Summary
-Component,Layer / Block,Configuration / Parameters,Output Shape
-Encoder,Input,"shape=(224, 224, 3)","[B, 224, 224, 3]"
-,Conv2D,"Filters: 64, Kernel: 7x7, Strides: 2, Padding: ""same""","[B, 112, 112, 64]"
-,BatchNormalization,-,"[B, 112, 112, 64]"
-,ReLU,-,"[B, 112, 112, 64]"
-,MaxPool2D,"Pool Size: 3x3, Strides: 2, Padding: ""same""","[B, 56, 56, 64]"
-,3x ResNetBlock,out_dims=256,"[B, 56, 56, 256]"
-,1x ResNetBlock,"out_dims=512, downsample=True","[B, 28, 28, 512]"
-,3x ResNetBlock,out_dims=512,"[B, 28, 28, 512]"
-,1x ResNetBlock,"out_dims=1024, downsample=True","[B, 14, 14, 1024]"
-,5x ResNetBlock,out_dims=1024,"[B, 14, 14, 1024]"
-,1x ResNetBlock,"out_dims=2048, downsample=True","[B, 7, 7, 2048]"
-,2x ResNetBlock,out_dims=2048,"[B, 7, 7, 2048]"
-,GlobalAveragePooling2D,-,"[B, 2048]"
-Projection Head,Input,"shape=(2048,)","[B, 2048]"
-,Dense,"Units: 2048, use_bias=False","[B, 2048]"
-,BatchNormalization,-,"[B, 2048]"
-,ReLU,-,"[B, 2048]"
-,Dense (Output),Units: 128,"[B, 128]"
+### Architecture Summary
+
+| Component | Layer / Block | Configuration / Parameters | Output Shape |
+| :--- | :--- | :--- | :--- |
+| **Encoder** | Input | `shape=(224, 224, 3)` | `[B, 224, 224, 3]` |
+| | Conv2D | Filters: `64`, Kernel: `7x7`, Strides: `2`, Padding: `"same"` | `[B, 112, 112, 64]` |
+| | BatchNormalization | - | `[B, 112, 112, 64]` |
+| | ReLU | - | `[B, 112, 112, 64]` |
+| | MaxPool2D | Pool Size: `3x3`, Strides: `2`, Padding: `"same"` | `[B, 56, 56, 64]` |
+| | 3x ResNetBlock | `out_dims=256` | `[B, 56, 56, 256]` |
+| | 1x ResNetBlock | `out_dims=512`, `downsample=True` | `[B, 28, 28, 512]` |
+| | 3x ResNetBlock | `out_dims=512` | `[B, 28, 28, 512]` |
+| | 1x ResNetBlock | `out_dims=1024`, `downsample=True` | `[B, 14, 14, 1024]` |
+| | 5x ResNetBlock | `out_dims=1024` | `[B, 14, 14, 1024]` |
+| | 1x ResNetBlock | `out_dims=2048`, `downsample=True` | `[B, 7, 7, 2048]` |
+| | 2x ResNetBlock | `out_dims=2048` | `[B, 7, 7, 2048]` |
+| | GlobalAveragePooling2D | - | `[B, 2048]` |
+| **Projection Head** | Input | `shape=(2048,)` | `[B, 2048]` |
+| | Dense | Units: `2048`, `use_bias=False` | `[B, 2048]` |
+| | BatchNormalization | - | `[B, 2048]` |
+| | ReLU | - | `[B, 2048]` |
+| | Dense (Output) | Units: `128` | `[B, 128]` |
 
 
 
